@@ -18,6 +18,8 @@
       background-position: center;
       background-attachment: fixed;
       background-repeat: no-repeat;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
     header {
       text-align: center;
@@ -35,11 +37,12 @@
     }
     .card {
       max-width: 600px;
-      margin: 24px auto;
+      margin: 40px auto 60px;
       background-color: #ffffffcc;
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       padding: 24px;
+      box-sizing: border-box;
     }
     .question-text {
       font-weight: 600;
@@ -54,6 +57,7 @@
       border: 1px solid #ddd;
       cursor: pointer;
       transition: all 0.2s ease;
+      overflow-wrap: break-word;
     }
     .option:hover {
       background-color: #e4efe8;
@@ -77,14 +81,14 @@
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      margin-top: 16px;
+      margin-top: 20px;
     }
     #nextBtn:hover {
       background-color: #8fc2a7;
     }
     #result {
       max-width: 600px;
-      margin: 32px auto;
+      margin: 40px auto 80px;
       background-color: #ffffffee;
       border-radius: 16px;
       padding: 24px;
@@ -102,6 +106,21 @@
       font-size: 13px;
       color: #888;
       padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    @media (max-width: 600px) {
+      .card, #result {
+        margin: 24px 16px 80px;
+        padding: 20px;
+      }
+      .question-text {
+        font-size: 16px;
+      }
+      #nextBtn {
+        font-size: 15px;
+        padding: 12px;
+      }
     }
   </style>
 </head>
@@ -224,6 +243,7 @@
       current++;
       if (current < questions.length) {
         showQuestion(current);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         showResult();
       }
@@ -246,9 +266,10 @@
           <p style="margin-top:16px">願這些氣味成為你生活的陪伴，讓每一次呼吸都更靠近真實的自己。</p>
         </div>
       `;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 啟動
+    // 初始顯示
     showQuestion(current);
   </script>
 </body>
